@@ -8,13 +8,16 @@ Deploy a Transit Gateway Route Table, it's associations, propagations, and route
 <!-- BEGIN_TF_DOCS -->
 ## Requirements
 
-No requirements.
+| Name | Version |
+|------|---------|
+| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | ~> 1.0 |
+| <a name="requirement_aws"></a> [aws](#requirement\_aws) | >= 3.0, < 5.0.0 |
 
 ## Providers
 
 | Name | Version |
 |------|---------|
-| <a name="provider_aws"></a> [aws](#provider\_aws) | n/a |
+| <a name="provider_aws"></a> [aws](#provider\_aws) | >= 3.0, < 5.0.0 |
 
 ## Modules
 
@@ -33,7 +36,6 @@ No modules.
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| <a name="input_description"></a> [description](#input\_description) | A Description of the TGW Route Table | `string` | `""` | no |
 | <a name="input_name"></a> [name](#input\_name) | The name of the TGW Route Table | `string` | n/a | yes |
 | <a name="input_routes"></a> [routes](#input\_routes) | A list of route maps | `list(map(string))` | `[]` | no |
 | <a name="input_tags"></a> [tags](#input\_tags) | The tags of the TGW Route Table | `map(string)` | <pre>{<br>  "test": "tag"<br>}</pre> | no |
@@ -44,7 +46,7 @@ No modules.
 
 | Name | Description |
 |------|-------------|
-| <a name="output_tgw_route_table_id"></a> [tgw\_route\_table\_id](#output\_tgw\_route\_table\_id) | n/a |
+| <a name="output_tgw_route_table_id"></a> [tgw\_route\_table\_id](#output\_tgw\_route\_table\_id) | TGW Route Table ID |
 <!-- END_TF_DOCS -->
 
 ## Appendix
