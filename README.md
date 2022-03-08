@@ -1,7 +1,7 @@
 # terraform-aws-transit-gateway-route-table
 
-[![Terraform](https://github.com/gooygeek/terraform-aws-transit-gateway-route-table/actions/workflows/terraform.yml/badge.svg)]()
-[![Release](https://github.com/gooygeek/terraform-aws-transit-gateway-route-table/actions/workflows/release.yml/badge.svg)]()
+![Terraform](https://github.com/gooygeek/terraform-aws-transit-gateway-route-table/actions/workflows/terraform.yml/badge.svg)
+![Release](https://github.com/gooygeek/terraform-aws-transit-gateway-route-table/actions/workflows/release.yml/badge.svg)
 
 Deploy a Transit Gateway Route Table, it's associations, propagations, and routes
 
