@@ -52,10 +52,11 @@ jobs:
             #### Terraform Validation 🤖\`${{ steps.validate.outcome }}\`
             #### Terraform Plan 📖\`${{ steps.plan.outcome }}\`
 
-            <details><summary>Show Format</summary>
-
+            <details>
+            <summary>Show Format</summary>
+            \`\`\`diff
             ${process.env.FMT}
-
+            \`\`\`
             </details>
 
             *Pusher: @${{ github.actor }}, Action: \`${{ github.event_name }}\`*`;
