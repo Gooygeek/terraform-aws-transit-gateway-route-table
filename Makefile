@@ -35,4 +35,4 @@ precommit: .env init validate format lint docs
 
 .PHONY: clean
 clean:
-	rm -rf .terraform *.tfstate .tflint.d
+	rm -rf .env .terraform *.tfstate .tflint.d

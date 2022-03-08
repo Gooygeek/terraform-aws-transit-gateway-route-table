@@ -2,7 +2,7 @@ version: '3.6'
 
 services:
   terraform:
-    image: gcr.io/terraform-admin-239302/terraform:1.1.7
+    image: hashicorp/terraform:1.1.7
     env_file: .env
     entrypoint: []
     working_dir: /opt/app
