@@ -4,12 +4,6 @@ variable "name" {
   description = "The name of the TGW Route Table"
 }
 
-variable "description" {
-  type        = string
-  description = "A Description of the TGW Route Table"
-  default     = ""
-}
-
 variable "tgw_id" {
   type        = string
   description = "The Id of the Transit Gateway to attach this route table to"
