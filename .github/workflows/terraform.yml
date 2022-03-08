@@ -21,7 +21,7 @@ jobs:
 
       - name: Terraform Format
         id: fmt
-        run: terraform fmt -check
+        run: terraform fmt -check -diff
         continue-on-error: true
 
       - name: Terraform Init
@@ -41,15 +41,22 @@ jobs:
       - name: Update Pull Request
         uses: actions/github-script@0.9.0
         if: github.event_name == 'pull_request'
-        # env:
+        env:
+          FMT: "terraform\n${{ steps.plan.fmt.stdout }}"
         #   PLAN: "terraform\n${{ steps.plan.outputs.stdout }}"
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
             const output = `#### Terraform Format and Style 🖌\`${{ steps.fmt.outcome }}\`
             #### Terraform Initialization ⚙️\`${{ steps.init.outcome }}\`
-            #### Terraform Plan 📖\`${{ steps.plan.outcome }}\`
             #### Terraform Validation 🤖\`${{ steps.validate.outcome }}\`
+            #### Terraform Plan 📖\`${{ steps.plan.outcome }}\`
+
+            <details><summary>Show Format</summary>
+
+            ${process.env.FMT}
+
+            </details>
 
             *Pusher: @${{ github.actor }}, Action: \`${{ github.event_name }}\`*`;
 
@@ -60,15 +67,12 @@ jobs:
               body: output
             })
 
-### Add to the above if running a plan
-
-# <details><summary>Show Plan</summary>
+### Add to the above  details section if running a plan
+# <summary>Show Plan</summary>
 
 # \`\`\`\n
 # ${process.env.PLAN}
 # \`\`\`
-
-# </details>
 
 # - name: Terraform Plan Status
 #   if: steps.plan.outcome == 'failure'
