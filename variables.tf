@@ -30,5 +30,5 @@ variable "routes" {
 variable "tags" {
   type        = map(string)
   description = "The tags of the TGW Route Table"
-  default         = { test = "tag" }
+  default     = { test = "tag" }
 }

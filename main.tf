@@ -27,7 +27,7 @@ resource "aws_ec2_transit_gateway_route_table_association" "tgw_assoc" {
 resource "aws_ec2_transit_gateway_route_table_propagation" "tgw_propagation" {
   for_each = local.attachments_with_propagation
 
-  transit_gateway_route_table_id    = aws_ec2_transit_gateway_route_table.this.id
+  transit_gateway_route_table_id = aws_ec2_transit_gateway_route_table.this.id
   transit_gateway_attachment_id  = each.value.attachment_id
 }
 
