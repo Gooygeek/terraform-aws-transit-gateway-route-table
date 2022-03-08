@@ -54,9 +54,11 @@ jobs:
 
             <details>
             <summary>Show Format</summary>
+
             \`\`\`diff
             ${process.env.FMT}
             \`\`\`
+
             </details>
 
             *Pusher: @${{ github.actor }}, Action: \`${{ github.event_name }}\`*`;
