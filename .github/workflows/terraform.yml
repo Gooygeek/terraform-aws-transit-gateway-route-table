@@ -84,3 +84,49 @@ jobs:
 # - name: Terraform Apply
 #   if: github.ref == 'refs/heads/main' && github.event_name == 'push'
 #   run: terraform apply -auto-approve
+
+  tflint:
+    name: Lint
+    needs: terraform
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+
+    - name: Cache plugin dir
+      uses: actions/cache@v2
+      with:
+        path: ~/.tflint.d/plugins
+        key: ubuntu-latest-tflint-${{ hashFiles('.tflint.hcl') }}
+
+    - name: Setup TFLint
+      uses: terraform-linters/setup-tflint@v1
+      with:
+        tflint_version: "v${{ env.TFLINT_VERSION }}"
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+
+    - name: Show version
+      run: tflint --version
+
+    - name: Init TFLint
+      run: tflint --init
+
+    - name: Run TFLint
+      run: tflint -f compact
+
+  tfdocs:
+    needs: tflint
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+      with:
+        ref: ${{ github.event.pull_request.head.ref }}
+
+    - name: Render terraform docs and push changes back to PR
+      uses: terraform-docs/gh-actions@main
+      with:
+        working-dir: .
+        output-file: README.md
+        output-method: inject
+        git-push: "true"
