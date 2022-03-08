@@ -11,12 +11,12 @@ env:
 jobs:
   validate:
     name: Validate
-    runs-on: ubuntu-latest
-    timeout-minutes: 5
+    runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        dir:
-          - '.'
+        # os: [ubuntu-latest, macos-latest, windows-latest]
+        os: [ubuntu-latest]
+    timeout-minutes: 5
     steps:
       - name: Checkout
         uses: actions/checkout@v2.1.0
@@ -26,7 +26,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           tf_actions_version: ${{ env.TERRAFORM_VERSION }}
-          tf_actions_working_dir: ${{ matrix.dir }}
+          tf_actions_working_dir: .
           tf_actions_comment: true
           tf_actions_subcommand: init
       - name: Validate
@@ -35,6 +35,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           tf_actions_version: ${{ env.TERRAFORM_VERSION }}
-          tf_actions_working_dir: ${{ matrix.dir }}
+          tf_actions_working_dir: .
           tf_actions_comment: true
           tf_actions_subcommand: validate
